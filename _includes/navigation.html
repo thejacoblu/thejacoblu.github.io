@@ -1,0 +1,21 @@
+<nav class="navbar navbar-light ">
+  <a class="navbar-brand" >Jacob LU's Blog</a>
+ 
+    <ul class="nav nav-pills">
+      {% for item in site.data.navigation %}
+      <li class="nav-item">
+        <a href="{{ item.link }}" 
+          {% if page.url == item.link %}
+            class="nav-link active"
+          {% else %}
+            class="nav-link"  
+          {% endif %}>
+          {{ item.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+</nav>
+
+
+
