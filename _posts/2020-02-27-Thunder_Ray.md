@@ -1,23 +1,8 @@
 ---
 layout: post
 author: Jacob
+tags: happy is really important
 img_src: "assets/images/ray.jpg"
 ---
-Mr. Ray is so handsome.
-
-
-
-
-
-h
-e\n
-is
-m
-y\n
-b
-o
-y
-f
-ri
-en
-d
+每篇文章都应该写一些摘要？但是还不能用md相关的格式字符。
+换行一次，两次，三次。

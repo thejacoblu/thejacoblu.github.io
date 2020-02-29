@@ -1,8 +1,288 @@
 ---
 layout: default
-title: Blog
+title: Jacob LU's Blog
 ---
-<h1>Latest Posts</h1>
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  .tag-zone {
+    display: flex;
+    display: -webkit-flex;
+    justify-content:start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    border-radius: 1rem;
+    margin: 0.2rem;
+    opacity: 1;    
+    background-image: linear-gradient(-45deg, #e26919 00%, #e7165c 120%);
+    background-size: cover;
+  }
+  .tag:any-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  .tag:hover {
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.548) inset;
+  }
+  .nav-card {
+    border-radius: 1rem;
+    height: 350px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  .blog-cards{
+    margin: 0rem;
+    padding-left: 7rem;
+    padding-top: 0rem;
+    border-radius:1rem;
+
+    width:fit-content;
+    background-color: rgb(18, 15, 22);
+    overflow-x:visible;
+  }
+  .blog-card{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+
+    width: 20rem;
+    height: 350px;
+    border-radius:1rem;
+    padding: 2.0rem 0rem 0rem 1.5rem; /*上右下左*/
+    margin: 1rem 0rem 0rem -6rem;
+    box-shadow: -1rem 1rem 0.5rem 0.5rem rgba(0, 0, 0, 0.582);
+    background-color: rgb(23, 20, 29);
+    overflow: hidden;
+    transition: 0.2s;
+  }
+
+  button{
+    outline: none;
+  }
+  .blog-card:hover{
+    transform:translateY(-1rem);
+  }
+  .blog-card:hover .blog-card-title{
+    background-image:-webkit-linear-gradient(0deg, #e26919 -10%, #f02569 100%); 
+    background-clip:text;
+    -webkit-background-clip:text; 
+    -webkit-text-fill-color:transparent; 
+  }
+  .blog-card:hover ~ .blog-card {
+    transform: translateX(5.5rem);
+  }
+
+
+    .rainbow2 {
+          background-image: linear-gradient(0deg, #e26919 20%, #e7165c 100%);
+    }
+    .clsfy {
+      background-color: #467ac7;
+    }
+    .search-card {
+        border-radius: 1rem;
+    }
+      .rainbow1 {
+          background-image: linear-gradient(0deg, #e0591a 0%, #740a02 100%);
+    }
+    ::-webkit-scrollbar {
+      height: 0px;
+    }
+    .blog-cards-col::-webkit-scrollbar {
+      width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+
+      height: 10px;
+    }
+    ::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #535353;
+  }
+  .plain {
+    outline: none;
+    background-color: transparent;
+    border-style:solid;
+    border-width: 0px;
+    border-color: #555454;
+  }
+  .search-btn {
+    width: 10%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+    border-left-width: 0px;
+    border-bottom-width: 2px;
+    background-image: linear-gradient(-45deg, #e26919 00%, #e7165c 120%);
+    transition: 0.35s;
+  }
+  .search-btn:focus,
+  .search-btn:active:focus,
+  .search-btn.active:focus,
+  .search-btn.focus,
+  .search-btn:active.focus,
+  .search-btn.active.focus {
+      outline: none;
+      box-shadow:none;
+  }
+
+  .search-input {
+    width: 90%; 
+    height: 100%;
+    border-top-left-radius: 2rem; 
+    border-bottom-left-radius: 2rem;
+    border-right-width: 0px;
+    border-bottom-width: 2px;
+    padding-left: 2rem;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: 0.35s;
+  }
+
+  .search-field {
+    height: 50px; 
+    width: 60%; 
+    transition: 0.35s;
+
+  }
+
+  .search-input:focus{
+    background-color: #fff;
+    
+  }
+  .search-input:focus ~.search-btn{
+    background-color: #fff;
+  }
+  .search-input:hover {
+    background-color: #fff;
+  }
+  .search-input:hover ~ .search-btn{
+    background-color: #fff;
+  }
+
+</style>
+
+  <div class="container mt-4">
+    <div class="row mb-2">
+    <div class="col-md-2" ></div>
+    <div class="col-md-8 col-md-offset-3 col-sm-12 search-field d-flex  mt-5 justify-content-center " >
+          <input class="plain search-input " type="text" placeholder="Start from here..."/>
+          <button class="plain search-btn" > 
+            <svg class="bi bi-search" width="2em" height="2em" viewBox="0 0 20 20" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M12.442 12.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M8.5 14a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM15 8.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+
+  </div>
+
+  <div class="container p-0 ml-5 mt-5" >
+    <div class="row d-flex mb-4 m-0 justify-content-between"  style="border-radius:1rem; " >
+      <div class="col-md-3 col-sm-2 pl-0 mt-3" >
+        <div class="nav-card rainbow2 d-flex align-items-center">
+          <h2  class="ml-4 mt-5" style="color: #fff;"><br><br>This<br>Month</h2>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-9 blog-cards-col p-0 ml-2" style="overflow-x: scroll; ">
+      <div class=" blog-cards d-flex mr-4">
+        {% for post in site.posts limit:10 %}
+        <div class="blog-card" >
+            <p class=" " style="color: rgb(119, 114, 114);">{{ post.date | date_to_string }}</p>
+            <h5 class="blog-card-title" style="flex-grow: 1;color: #fff; font-weight: bolder; overflow-x: hidden;">{{ post.title }}</h5>
+            <p class="" style="flex-grow: 2; overflow: hidden; color: #fff;">{{ post.content  | strip_html  | slice: 0, 80 }}</p>
+            <div class="tag-zone pb-4" >
+              {% for tag in post.tags %}
+              <a class="tag" href="#">{{ tag }}</a>
+              {% endfor %}
+            </div>
+        </div> 
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+  </div>
+  
+<!---->
+<!-- <div class="row mb-2">
+  {% for post in site.posts %}
+      <div class="card col-md-4 h-100 shadow-sm">
+        <div class="card-body">
+          <div class="row">
+          <h3 class="card-title mb-0 mr-1 w-50" style="background-color: #467ac7;">{{ post.title | strip_html | truncate: 20 }}</h3>
+        </div>
+        {% for tag in post.tags %}
+          <span class="badge badge-info tag">{{ tag }}</span>
+        {% endfor %}
+          
+          <p class="card-text mt-4 mb-0">{{ post.content  | strip_html  | strip_newlines | slice: 0, 40 }}</p>
+          <a href="{{ post.url }}" class="stretched-link"></a>
+          
+        </div>
+        <div class="card-footer text-plain display-mini">
+          {{ post.date | date_to_string }}
+        </div>
+      </div>
+       <div class="col-md-4">
+      <img class="bd-placeholder-img" style="height: 100%; width: 100%; object-fit: contain" src="{{ post.img_src }}">
+      </div> 
+  {% endfor %}
+</div>  -->
+<!-- 
+  <div class="row mb-2">
+    {% for post in site.posts %}
+    <div class="col-md-4" style="overflow: hidden;">
+      <div class="card">
+        <div class="card-body">
+          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <h3 class="card-title mb-0" >{{ post.title }}</h3>
+              <div class="container">
+                <div class="row mb-2">
+                {% for tag in post.tags %}
+                <span class="badge badge-pill badge-info m-1">{{ tag }}</span>
+                 <button class="search-btn btn-mini btn-outline-success m-1" type="button"  >{{ tag }}  </button>
+                {% endfor %}
+              </div>
+              </div>
+              
+              <div class="mb-1 text-muted">{{ post.date | date_to_string }}</div>
+              <a href="{{ post.url }}" class="stretched-link"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-foot text-muted">
+          {{ post.date | date_to_string }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div> 
+-->
+<!--
 <div class="row">
   
   {% for post in site.posts %}
@@ -21,6 +301,7 @@ title: Blog
   </div>
   {% endfor %}
 </div>
+-->
 <!--
 <ul>
   {% for post in site.posts %}
