@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog
 author: Jacob
 tags: happy is really important
 img_src: "assets/images/ray.jpg"

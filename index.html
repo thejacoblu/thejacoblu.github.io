@@ -1,5 +1,179 @@
 ---
 layout: default
-title: Home
+title: Jacob LU's Blog
 ---
-<h1>{{ "Hello World!" | downcase }}</h1>
+<script>
+  function toggle_show() {
+    document.getElementById("my_dropdown").classList.toggle("show");
+  }
+  function hide() {
+    setTimeout(toggle_show(), 2000);
+  }
+  function func_filter() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("g_search");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("my_dropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+</script>
+  <div class="container mt-4">
+
+    <div class="row mb-2">
+      <div class="col-md-2" ></div>
+      <div class="col-md-8 col-md-offset-3 col-sm-12 mt-5 d-flex flex-column justify-content-center">
+            <div class="search-field d-flex " style="position: absolute; z-index:2;">
+              <input class="plain search-input " type="text" placeholder="Start from here..." id="g_search" onkeyup="func_filter()" onfocus="toggle_show()"/>
+              <button class="plain search-btn azure" > 
+                <svg class="bi bi-search" width="2em" height="2em" viewBox="1 0 20 20" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M12.442 12.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M8.5 14a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM15 8.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="bg-light rounded shadow-lg p-5 search-dropdown" id="my_dropdown">
+              {% for post in site.posts %}
+                <a class="p-1" href={{ post.url }}> {{ post.title }}</a><br>
+              {% endfor %}
+            </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+
+    <div class="row mb-2 mt-5">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 h-75 tag-zone">
+        {% for tag in site.tags %}
+        <a class="tag tm-tag" href="#"> {{ tag[0] }}  <div class="d-inline" style="font-size: 0.65rem;">{{ tag[1] | size }} </div></a>
+        {% endfor %}
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+
+  <div class="container p-0 ml-5 mt-5" >
+    <div class="row d-flex mb-4 m-0 justify-content-between"   >
+      <div class="col-md-2 col-sm-2 pl-0 mt-3 d-flex flex-column" >
+        <div class="nav-card azure shadow-sm mt-3 pl-4" style="margin-right: -3rem;">
+          <h2 > <br><br><br><br><br>This<br>Month </h2>
+          <h5> <br>{{ site.time | date: '%Y %B' }} </h5>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-9 blog-cards-col p-0 ml-2" style="overflow-x: scroll; background-color: rgb(241, 242, 247); border-radius: 1rem;">
+      <div class=" blog-cards d-flex mr-4 " >
+        {% capture now_month %} {{ site.time | date: '%Y %B' }} {% endcapture %}
+        {% for post in site.posts limit:10 %}
+          {% capture post_month %} {{ post.date | date: '%Y %B' }} {% endcapture %}
+          {% if now_month == post_month %}
+            <div class="blog-card tm-card shadow-lg" style="overflow-x: hidden;" >
+                <p class=" " style="color: rgb(119, 114, 114);">{{ post.date | date_to_string }}</p>
+                <a class= "blog-card-title" href={{ post.url }}><h5 style="flex-grow: 1;color: #444; font-weight: bolder; overflow-x: hidden; padding-bottom: 1rem;">{{ post.title }}</h5></a>
+                <p class="mr-3" style="flex-grow: 2; overflow: hidden; color: #000;">{{ post.content  | strip_html  | slice: 0, 65  | append: "..."}}</p>
+                <div class="tag-zone pb-2 mb-2" >
+                  {% for tag in post.tags %}
+                  <a class="tag tm-tag" href="#">{{ tag }}</a>
+                  {% endfor %}
+                </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+  </div>
+  
+<!---->
+<!-- <div class="row mb-2">
+  {% for post in site.posts %}
+      <div class="card col-md-4 h-100 shadow-sm">
+        <div class="card-body">
+          <div class="row">
+          <h3 class="card-title mb-0 mr-1 w-50" style="background-color: #467ac7;">{{ post.title | strip_html | truncate: 20 }}</h3>
+        </div>
+        {% for tag in post.tags %}
+          <span class="badge badge-info tag">{{ tag }}</span>
+        {% endfor %}
+          
+          <p class="card-text mt-4 mb-0">{{ post.content  | strip_html  | strip_newlines | slice: 0, 40 }}</p>
+          <a href="{{ post.url }}" class="stretched-link"></a>
+          
+        </div>
+        <div class="card-footer text-plain display-mini">
+          {{ post.date | date_to_string }}
+        </div>
+      </div>
+       <div class="col-md-4">
+      <img class="bd-placeholder-img" style="height: 100%; width: 100%; object-fit: contain" src="{{ post.img_src }}">
+      </div> 
+  {% endfor %}
+</div>  -->
+<!-- 
+  <div class="row mb-2">
+    {% for post in site.posts %}
+    <div class="col-md-4" style="overflow: hidden;">
+      <div class="card">
+        <div class="card-body">
+          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <h3 class="card-title mb-0" >{{ post.title }}</h3>
+              <div class="container">
+                <div class="row mb-2">
+                {% for tag in post.tags %}
+                <span class="badge badge-pill badge-info m-1">{{ tag }}</span>
+                 <button class="search-btn btn-mini btn-outline-success m-1" type="button"  >{{ tag }}  </button>
+                {% endfor %}
+              </div>
+              </div>
+              
+              <div class="mb-1 text-muted">{{ post.date | date_to_string }}</div>
+              <a href="{{ post.url }}" class="stretched-link"></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-foot text-muted">
+          {{ post.date | date_to_string }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div> 
+-->
+<!--
+<div class="row">
+  
+  {% for post in site.posts %}
+  <div class="col-sm-4">
+    <div class="card" style="width: 18rem;">
+      <div>
+      <img src={{ post.img_src }} class="card-img-top" alt="...">
+      </div>
+      <div class="card-body">
+        <h3>{{ post.title }}</h3>
+        <h6>{{ post.date | date_to_string }}</h6>
+        <p class="card-text">{{ post.excerpt }}</p>
+        <a href="{{ post.url }}"> Continue reading...</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+-->
+<!--
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <p>{{ post.excerpt }}</p>
+    </li>
+  {% endfor %}
+</ul>
+-->

@@ -1,0 +1,10 @@
+blockquote {
+    border-width: 0px;
+    border-left-width: 3px;
+    border-color: rgb(86, 199, 120);
+    border-style: solid;
+    padding: 0.65rem 0.8rem 0.1rem 1rem;
+    margin: 1rem -0.5rem 1rem -0.5rem;
+    background-color:rgba(86, 199, 120, 0.1);
+    color: dimgray;
+}
